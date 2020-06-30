@@ -1,0 +1,136 @@
+{% extends  'home/header.html'    %}
+{% block title %}<title> AVAILABLE QUIZZES</title>{% endblock %}
+{% block s %} {% endblock  %}
+{% block m %}
+<li><a href="{% url 'progress' %}">My Progress</a></li> {% endblock  %}
+{% block n %}
+<li><a  href="{% url 'freepapers' %}">Free Papers</a></li>{% endblock  %}
+{% block c %}
+<li><a  href="{% url 'mypapers' %}">My Papers</a></li>
+{% endblock  %}
+{% block cn %}
+<li><a  href="{% url 'paidpapers' %}">Paid Papers</a></li> {% endblock  %}
+{% block i %} {% endblock %}
+{% block l %} {% endblock %}
+{% block f %} {% endblock %}
+
+
+{% block sm %} {% endblock  %}
+{% block mm %}
+<li><a href="{% url 'progress' %}"><i class="material-icons">military_tech</i>My Progress</a></li> {% endblock  %}
+{% block nm %}<li><a  href="{% url 'freepapers' %}">Free Papers</a></li>{% endblock  %}
+{% block cm %}<li><a  href="{% url 'mypapers' %}">My Papers</a>{% endblock  %}
+{% block cnm %}<li><a  href="{% url 'paidpapers' %}">Paid Papers</a></li>{% endblock  %}
+{% block im %}{% endblock  %}
+{% block lm %}  {% endblock %}
+{% block onlinem %}  {% endblock %}
+{% block pdfm %}  {% endblock %}
+{% block fm %}  {% endblock %}
+
+
+{% block body %}
+
+<div style="height:80px"></div>
+
+
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Quiz Rules</h4>
+            <ol>
+                <li>For <span style="text-decoration: underline">Exam Papers </span>timer won't freeze. You have
+                    to
+                    finish within time alloted or the paper will be submitted
+                    automatically.
+                </li>
+                <li>For<span style="text-decoration: underline"> Practice Papers </span>timer will freeze when
+                    you
+                    leave
+                    the paper .Come back again and procced whenever and
+                    wherever you want.
+                    (Although Practice papers having timestamp of more than 1 week will be submitted
+                    automatically)
+                </li>
+            </ol>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
+
+<h5 style="font-family: 'Charmonman';font-size: 22px;" >
+    Hii,{{request.user.first_name}} .Let's walk through online quiz section.</h5>
+
+
+
+<div class="row container">
+ <div class="card">
+      <!-- Modal Trigger -->
+    <a class="waves-effect waves-light btn red modal-trigger" href="#modal1"><i class="material-icons right ">info_outline</i>RULES</a>
+
+    <div class="card-content">
+      <p>Test are very integeral part of our studies. F.T.C offers online test facility with dedicated user progress management algorithm.
+          You can track results of all your past papers at F.T.C online test anytime and anywhere. Also ,more to add ,you will be able to see
+          your ranks among all students appeared for tests .
+          You can also give test as many time as you want  if it is not of single attempt type.
+          With a dedicated  slot for your result ,you will be able to see detailed analysis of your result at any time after completing the test.
+
+      </p>
+        <h5>
+            There are mainly three section of online quizes as listed....
+        </h5>
+
+    </div>
+    <div class="card-tabs">
+      <ul class="tabs tabs-fixed-width">
+        <li class="tab"><a href="#test4">Free Papers</a></li>
+        <li class="tab"><a  href="#test5">My Papers</a></li>
+        <li class="tab"><a href="#test6">Paid Papers</a></li>
+      </ul>
+    </div>
+    <div class="card-content grey lighten-4">
+      <div id="test4">
+          This section consist of all free papers designed to help students to have a better knowledge of what they have been taught.
+          <br>This section is divided in major categories, containing free papers designed by FTC instructors.<br><br>
+          No need to pay. Just go and test yourself!
+
+      </div>
+      <div id="test5">This section will contain all your papers that you bought.
+          Try to finish all those papers as soon as possible.
+
+      </div>
+      <div id="test6">This section consist of all paid papers made carefully taking the needs and request of students.<br>
+          This section also consists of papers divided in different categories.
+      <br>Just select your category pay with either paytm or debit cart and step forward.<br>
+          Unlike others ,FTC offers payment per paper.<br>
+          Pay only for what you really need.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock  %}
+{% block footer %}
+<div class="foote-copyright ">
+    <div class="center-align grey darken-4" style="position:fixed;bottom: 0px;width: 100%;">&copy; 2020 F.T.C. | website
+        by CrazyIITians
+    </div>
+</div>
+
+</div>
+<script>
+    $(document).ready(function () {
+         $('.tabs').tabs();
+        $('.modal').modal();
+         $('nav').addClass('sticky-nav');
+    });
+
+
+</script>
+
+{% endblock %}
+
+
+

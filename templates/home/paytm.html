@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta name="viewport" content="width-device-width ,initial-scale=1.0"/>
+    <title>Paytm merchant payment page</title>
+
+</head>
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+<body>
+<div id="redirecting">
+    <h1>Redirecting you to the merchant....</h1>
+    <h1>Please do not refresh your page....</h1>
+    <form action="https://securegw-stage.paytm.in/order/process" method="post" name="paytm">
+        {% for key, value in param_dict.items %}
+        <input type="hidden" name="{{key}}" value="{{value}}">
+        {% endfor %}
+
+    </form>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="application/javascript"
+        src=" https://securegw-stage.paytm.in/merchantpgpui/checkoutjs/merchants/{{mid}}"
+        crossorigin="anonymous"></script>
+<script>
+    $(window).on('load', function () {
+        $("#redirecting").addClass('hidden');
+        onScriptLoad();
+
+    });
+
+    function onScriptLoad() {
+        var config = {
+            "root": "",
+            "flow": "DEFAULT",
+            "data": {
+                "orderId": "{{order_id}}", /* update order id */
+                "token": "{{txn_token}}", /* update token value */
+                "tokenType": "TXN_TOKEN",
+                "amount": "{{amount}}" /* update amount */
+            },
+            "handler": {
+                "notifyMerchant": function (eventName, data) {
+                    console.log("notifyMerchant handler function called");
+                    console.log("eventName => ", eventName);
+                    console.log("data => ", data);
+                }
+            }
+        };
+
+        if (window.Paytm && window.Paytm.CheckoutJS) {
+            window.Paytm.CheckoutJS.onLoad(function excecuteAfterCompleteLoad() {
+                // initialze configuration using init method
+                window.Paytm.CheckoutJS.init(config).then(function onSuccess() {
+                    // after successfully updating configuration, invoke Blink Checkout
+                    window.Paytm.CheckoutJS.invoke();
+                }).catch(function onError(error) {
+                    console.log("error => ", error);
+                });
+            });
+        }
+    }
+</script>
+
+</body>
+
+</html>

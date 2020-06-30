@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width-device-width ,initial-scale=1.0"/>
+    {% block title %} <title> FUTURE TRACK CLASSES</title>{% endblock %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css'%}">
+    <link href='https://fonts.googleapis.com/css?family=Charmonman' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+
+
+<!-- navbar-->
+<div class="cube-wrapper">
+    <div class="sk-folding-cube">
+        <div class="sk-cube1 sk-cube"></div>
+        <div class="sk-cube2 sk-cube"></div>
+        <div class="sk-cube4 sk-cube"></div>
+        <div class="sk-cube3 sk-cube"></div>
+    </div>
+</div>
+
+
+<nav class="nav-wrapper">
+    {% block logo %} <a id="logo-container" href="#" class="brand-logo logo">{% load static %}<img
+        src="{% static 'home/images/wix.jpeg' %}"/></a>{% endblock %}
+    <ul class="right hide-on-med-and-down ">
+
+        {% block h %}
+        <li><a href="{% url 'home' %}">HOME</a></li>
+        {% endblock %}
+        {% block s %}
+        <li><a href="#services">ABOUT US</a></li>
+        {% endblock %}
+        {% block m %}
+        <li><a href="{% url 'memories' %}">MEMORIES</a></li>
+        {% endblock %}
+        {% block n %}
+        <li><a href="{% url 'notice' %}">NOTICES</a></li>
+        {% endblock %}
+        {% block c %}
+        <li><a href="#contact">INQUIRE</a></li>
+        {% endblock %}
+        {% block cn %}
+        <li><a href="#connect">CONNECT</a></li>
+        {% endblock %}
+        {% if not request.user.is_authenticated %}
+        {% block l %}
+        <li><a href="{% url 'login' %}" class="btn  black">LOGIN<i class="material-icons  right">login</i></a>
+        </li>
+        {% endblock %}
+
+
+        {% else %}
+        {% block logout %}
+        <li><a class='dropdown-trigger btn black' data-target='dropdown2'><i class="material-icons  left">person_pin</i>Hii,
+            {{request.user}} </a></li>
+        {% endblock %}
+        {% endif %}
+
+        {% block f %}
+        <li><a class='dropdown-trigger btn black' data-target='dropdown1'>FOR YOU!<i class="material-icons right">arrow_drop_down</i></a>
+        </li>
+        {% endblock %}
+
+
+        {% block i %}
+        <li><a href="{% url 'index' %}" class="waves-effect waves-light btn black tooltipped" data-tooltip="Unique Gym">MORE
+            FROM US<i class="material-icons right">last_page</i></a></li>
+        {% endblock %}
+    </ul>
+    {% block sidenav %}
+    <a href="" class="sidenav-trigger" data-target="mobile-menu"> <i class="material-icons">menu</i></a>{% endblock %}
+</nav>
+{% block dropdown1 %}
+<ul id='dropdown1' class='dropdown-content'>
+    <li><a href="{% url 'quiz' %}" class="black-text">Online Quizes</a></li>
+    <li><a href="{% url 'importantpdf' %}" class="black-text">Important PDFs</a></li>
+    <li><a href="{% url 'importantforms' %}" class="black-text"> Forms</a></li>
+
+</ul>
+{% endblock %}
+{% block dropdown2 %}
+<ul id='dropdown2' class='dropdown-content black-text'>
+    {% block prof %}
+    <li><a href="{% url 'view_profile' %}" class="black-text">My Profile</a></li>
+    {% endblock %}
+    <li><a href="{% url 'logout' %}" class="black-text">LOGOUT</a></li>
+
+
+</ul>
+{% endblock %}
+
+
+<ul class="sidenav grey lighten-2 sidenav-close" id="mobile-menu">
+    {% block hm %}
+    <li><a href="{% url 'home' %}"><i class="material-icons">home</i>HOME</a></li>
+    {% endblock %}
+    {% block sm %}
+    <li><a href="#services"><i class="material-icons">bubble_chart</i>ABOUT US</a></li>
+    {% endblock %}
+    {% block mm %}
+    <li><a href="{% url 'memories' %}"><i class="material-icons">photo_library</i>MEMORIES</a></li>
+    {% endblock %}
+    {% block nm %}
+    <li><a href="{% url 'notice' %}"><i class="material-icons">notifications</i>NOTICES</a></li>
+    {% endblock %}
+    {% block cm %}
+    <li><a href="#contact"><i class="material-icons">attach_email</i>INQUIRE</a></li>
+    {% endblock %}
+    {% block cnm %}
+    <li><a href="#connect"><i class="material-icons">group_add</i>CONNECT</a></li>
+    {% endblock %}
+    {% block onlinem %}
+    <li><a href="{% url 'quiz' %}"><i class="material-icons">emoji_events</i>Online Quizes</a></li>
+    {% endblock %}
+    {% block pdfm %}
+    <li><a href="{% url 'importantpdf' %}"><i class="material-icons">picture_as_pdf</i>Important PDFs</a></li>
+    {% endblock %}
+    {% block fm %}
+    <li><a href="{% url 'importantforms' %}" class="black-text"><i class="material-icons">description</i> Forms</a></li>
+    {% endblock %}
+
+    {% if not request.user.is_authenticated %}
+    {% block lm %}
+    <li><a href="{% url 'login' %}" class="btn  black">LOGIN<i class="material-icons  right">login</i></a></li>
+    {% endblock %}
+    {% else %}
+
+
+    {% block logoutm %}
+    <li><a>Hii ,{{request.user}}</a></li>
+    <div style="position: relative;left:30px;">
+        {% block profm %}
+        <li><a href="{% url 'view_profile' %}" class="black-text"><i class="material-icons  left">person_pin</i>My
+            Profile</a></li>
+        {% endblock %}
+        <li><a href="{% url 'logout' %}"><i class="material-icons">exit_to_app</i>LOGOUT</a></li>
+    </div>
+    {% endblock %}
+
+
+    {% endif %}
+    {% block im %}
+    <div class="collection">
+        <li class="collection-item"><a href="{% url 'index' %}">MORE FROM US</a></li>
+    </div>
+    {% endblock %}
+
+
+</ul>
+
+
+{% block body %}
+{% endblock %}
+
+<!--Section: Follow -->
+
+<!-- footer -->
+{% block footer %}
+
+<footer class="page-footer black darken-2">
+    <section class=" section section-follow black darken-2 white-text scrollspy" id="connect">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center">
+                    <h4>Follow Future Track Classes</h4>
+                    <p>Follow us on social media for latest updates</p>
+                    <a href="https://www.facebook.com/Future-Track-Classes-112786170417136/" target="_blank"
+                       class="white-text"><i class="fa fa-facebook fa-4x"></i></a>
+                    <a href="https://twitter.com/FutureTrackC" target="_blank" class="white-text"><i
+                            class="fa fa-twitter fa-4x"></i></a>
+                    <a href="https://www.instagram.com/futuretrackclasses/" target="_blank" class="white-text"><i
+                            class="fa fa-instagram fa-4x"></i></a>
+                    <a href="{% url 'home' %}#contact" class="white-text"><i
+                            class="fa fa-envelope-square fa-4x"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container ">
+        <div class="row">
+            <div class="col s12 l4 pull-l2">
+                <h5> Director</h5>
+
+                <p>Mrs Gudiya Sonkar<br>B.Com<br>
+                    +91-9554349294<br>
+                    +91-7007927988<br>
+                    {% if user.is_superuser or user.is_staff %}
+                    <a href="/admin">ADMIN LOGIN</a>
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="col s12 l4 push-l2 ">
+                <h5>Connect</h5>
+                <ul>
+                    <li><a href="https://www.facebook.com/Future-Track-Classes-112786170417136/" target="_blank"
+                           class="grey-text text-lighten-3">Facebook</a></li>
+                    <li><a href="https://twitter.com/FutureTrackC" target="_blank" class="grey-text text-lighten-3">Twitter</a>
+                    </li>
+                    <a href="https://www.instagram.com/futuretrackclasses/" target="_blank"
+                       class="grey-text text-lighten-3">Instagram</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col s12 l4 push-l2">
+                <h5>Address</h5>
+                <p>Hirapatti,<br>Near Amar Nursing Home<br>Azamgarh ,276001<br>Uttarpradesh,<br>India</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="foote-copyright grey darken-4">
+
+        <div class="container center-align">&copy; 2020 F.T.C. | website by CrazyIITians</div>
+
+    </div>
+</footer>
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(window).scrollTop() >= 100) {
+                $('nav').addClass('sticky-nav');
+            } else {
+                $('nav').removeClass('sticky-nav');
+            }
+        });
+    });
+
+</script>
+
+{% endblock %}
+<script>
+
+    $(window).on('load',function () {
+//Preloader
+        preloaderFadeOutTime = 500;
+
+        function hidePreloader() {
+            var preloader = $('.cube-wrapper');
+            preloader.fadeOut(preloaderFadeOutTime);
+        }
+
+        hidePreloader();
+    });
+
+    $('.tooltipped').tooltip();
+
+    $('.dropdown-trigger').dropdown({
+        coverTrigger: false,
+        hover: true
+    });
+
+    $('.scrollspy').scrollSpy();
+
+    $('.sidenav').sidenav({
+        closeOnClick: true,
+    });
+
+</script>
+
+
+</body>
+</html>

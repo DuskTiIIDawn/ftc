@@ -1,0 +1,64 @@
+{% extends  'home/header.html'    %}
+{% block title %} <title> F.T.C - MEMORIES</title>{% endblock %}
+{% block s %}{% endblock %}
+{% block m %}{% endblock %}
+
+
+{% block c %}
+<li><a href="{% url 'home' %}#contact">INQUIRE</a></li>
+{% endblock  %}
+
+
+{% block fm %} {% endblock %}
+{% block pdfm %} {% endblock %}
+
+{% block sm %} {% endblock  %}
+{% block mm %}{% endblock  %}
+{% block nm %}{% endblock  %}
+{% block cm %}{% endblock  %}
+{% block cnm %}{% endblock  %}
+{% block im %}{% endblock  %}
+{% block lm %}  {% endblock %}
+{% block onlinem %}  {% endblock %}
+{% block body %}
+<div class="notice-nav black "></div>
+<div class="container">
+    <h5 style="font-weight: bold">We Don't Remember Days,We Remember Moments...</h5>
+    <p >
+        At F.T.C , We value every second passed together. We have enjoyed every success and worked together in every
+        situation
+        with great enthusiasm. This is what binds us together ...As a TEAM and as a FAMILY,, <br>We welcome you all
+        to be a part of our foundation and always look forward to support you at our best...
+    </p>
+</div>
+
+
+{% if not photos %}
+<h4> No Photos Added yet</h4>
+<h5>Sweet Photos and Memories will be posted soon...</h5>
+{% endif %}
+
+<div class="row">
+    {% for photo in photos %}
+    <div class="col s12 m4 l3">
+        <div class="card z-depth-5" style="min-height: 320px">
+            <div class="card-image">
+                {% if photo.myphoto %}
+                <img src="{{ photo.myphoto.url }}" class="responsive-img materialboxed">
+                {% endif %}
+
+            </div>
+            {% if photo.description %}
+            <div class="card-content">
+                <p>{{photo.description}}</p>
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

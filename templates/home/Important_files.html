@@ -1,0 +1,71 @@
+{% extends  'home/header.html'    %}
+{% block title %}<title>IMPORTANT FILES</title>{% endblock %}
+{% block s %} <li><a href="{% url 'quiz' %}" >Quizes</a>{% endblock  %}
+{% block n %} <li><a href="{% url 'importantforms' %}" > Forms</a></li> {% endblock  %}
+{% block m %}<li><a href="{% url 'progress' %}">My Progress</a></li> {% endblock  %}
+{% block c %}{% endblock  %}
+{% block cn %}{% endblock  %}
+{% block i %} {% endblock %}
+{% block l %}  {% endblock %}
+{% block f %} {% endblock %}
+
+{% block pdfm %} {% endblock %}
+{% block onlinem %}  {% endblock %}
+{% block fm %} {% endblock %}
+{% block sm %} {% endblock  %}
+{% block mm %}{% endblock  %}
+{% block nm %}{% endblock  %}
+{% block cm %}{% endblock  %}
+{% block cnm %}{% endblock  %}
+{% block im %}{% endblock  %}
+{% block lm %}  {% endblock %}
+
+
+
+{% block body %}
+<div class="notice-nav black "></div>
+
+
+{% if not important_files %}
+<div class="row container">
+    <div class="card col s11 l5 m5 push-l3 push-m4 z-depth-5 hoverable" style="position:fixed;top:30vh;">
+        <div class="card-content ">
+          <h4> No Files yet</h4>
+        <h5>All Important Files  will be uploaded soon...</h5>
+
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+
+{% if  important_files %}
+      <h4 style="font-weight: bold">  Important Files </h4>
+  <div class="row">
+      {% for important_file in important_files %}
+    <div class="col s12 l6 ">
+      <div class="card hoverable">
+        <div class="card-image">
+          <a class="btn-floating halfway-fab waves-effect waves-light red" href="{{ important_file.myfile.url }}" download ><i class="material-icons">file_download</i></a>
+        </div>
+        <div class="card-content">
+          <p>{{important_file.description}}</p>
+        </div>
+      </div>
+    </div>
+      {% endfor %}
+  </div>
+
+{% endif %}
+
+
+
+{% endblock  %}
+{% block footer %}
+ <div class="foote-copyright " >
+  <div class="center-align grey darken-4" style="position:fixed;bottom: 0px;width: 100%;">&copy; 2020 F.T.C. | website by CrazyIITians</div></div>
+
+    </div>
+{% endblock  %}
+% endfor %}

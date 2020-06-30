@@ -1,0 +1,76 @@
+{% extends  'home/header.html'    %}
+{% block body %}
+<div class="notice-nav black "></div>
+<div class="notice container  black-text ">
+    <section class="registration ">
+        <div class="card">
+            <div class="container card-content">
+                <h3>Registration</h3>
+                <form method="post" class="col s12">
+                    {% csrf_token %}
+                    <div class="row">
+                        {{form.first_name.errors}}
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input type="text" class="validate" name="first_name" id="id_first_name" required>
+                            <label for="id_first_name">First Name</label>
+                        </div>
+                        {{form.last_name.errors}}
+                        <div class="input-field  col s6">
+                            <input type="text" class="validate" name="last_name" id="id_last_name" required>
+                            <label for="id_last_name">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {{form.username.errors}}
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">border_color</i>
+                            <input type="text" class="validate" name="username" id="id_username" required>
+                            <label for="id_username">User Name</label></div>
+                    </div>
+
+                    <div class="row">
+                        {{form.email.errors}}
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">email</i>
+                            <input type="email" class="validate" name="email" id="id_email" required>
+                            <label for="id_email">Your Email</label>
+                            <span class="helper-text" data-error="wrong" data-success="right"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        {{form.password1.errors}}
+                        <div class="input-field col s12 ">
+                            <i class="material-icons prefix">lock_outline</i>
+                            <input maxlength="100" type="password" class="validate" name="password1" id="id_password1"
+                                   required>
+                            <label for="id_password1">Password(At least 8 characters)</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        {{form.password2.errors}}
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">lock</i>
+                            <input maxlength="100" type="password" class="validate" name="password2" id="id_password2"
+                                   required>
+                            <label for="id_password2">Confirm Password</label>
+                        </div>
+                    </div>
+                    <input class="btn" type="submit" value="Submit" name="CreateUser" required>
+                </form>
+            </div>
+            <div class="col s12 center">
+                <span class="card-action">Already have an account? <a href="{% url 'login' %}"
+                                                                      class="ml-2">Login</a></span>
+
+            </div>
+
+
+        </div>
+    </section>
+</div>
+
+
+{% endblock %}

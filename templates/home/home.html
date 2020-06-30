@@ -1,0 +1,326 @@
+{% extends  'home/header.html'    %}
+{% block h %} {% endblock %}
+{% block hm %} {% endblock %}
+
+
+{% block body %}
+
+
+<!-- Flying text in home -->
+<header>
+    <div class="welcome-section content-hidden">
+        <div class="content-wrap">
+            <ul class="fly-in-text">
+                <li>Future</li>
+                <li>Track</li>
+                <li>Classes</li>
+            </ul>
+            <a href="#batches">
+                <div class="theme">LET'S GROW TOGETHER</div>
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- photo/ grid -->
+
+
+<section class="container section scrollspy" id="batches">
+    <div class="row">
+        <div class="col s12 m4 l4">
+            <img src="static/home/images/alcheringa.jpg" alt="" class="responsive-img materialboxed ">
+        </div>
+        <div class="col s12 m6 l6 offset-l1 offset-m1">
+            <h4 class="black-text text-darken-4"> Academic Courses </h4>
+            <p> Class 1 to 12 All board Classes<br>
+                Class 1 to 8 --All Subject Classes<br>
+                Class 9 and 10 A--Math,Science and English<br>
+                Class 11 and 12 --Math ,Physics, Chemistry,Biology
+
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m4 l4 push-l7 offset-l1 offset-m1 push-m7">
+            <img src="static/home/images/techniche.jpg" alt="" class="responsive-img materialboxed">
+        </div>
+        <div class="col s12  m6 l6 offset-l1 pull-l5 offset-m1 pull-m5 right-align">
+            <h4 class="black-text text-darken-4">Computer Courses</h4>
+            <p>
+                All Computer Courses<br>
+                --CCC (Course on Computer Concepts)<br>
+                --ADCA (Advance Diploma in Computer Applications)
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m4 l4">
+            <img src="static/home/images/udgam.jpg" alt="" class="responsive-img materialboxed">
+        </div>
+        <div class="col s12 m6 l6 offset-l1 offset-m1">
+            <h4 class="black-text text-darken-4">Competition Courses</h4>
+            <p>All one day Exam Batches<br>
+                --SSC , V.D.O, Police, S.I. ,Bank<br>
+                --UPTET, CTET, TGT/PGT (English)<br>
+                --Railway ,Electricity Power Department<br>
+                --exclusive English spoken classes, and many more
+
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m4 l4 push-l7 offset-l1 offset-m1 push-m7">
+            <img src="static/home/images/dance.jpg" alt="" class="responsive-img materialboxed">
+        </div>
+        <div class="col s12  m6 l6 offset-l1 pull-l5 offset-m1 pull-m5 ">
+            <h4 class="black-text text-darken-4 center-align">Extracurriculars</h4>
+            <p class="left-align">We have special classes for All Kinds of Dances including
+                Classical ,Modern,Hip-hop, Popping, Robotics and many more
+                <br>--School functions and Home Tutions are also prepared by us
+            </p>
+        </div>
+    </div>
+</section>
+
+<div class=" container">
+    <h3>For Updates On new Batches </h3>
+    <a href="{% url 'notice' %}" class="waves-effect waves-light btn black  ">CLICK HERE</a>
+</div>
+
+<!-- parallax-->
+<div class="parallax-container">
+    <div class="parallax">
+        <img src="static/home/images/space.jpg" alt="" class="responsive-img">
+    </div>
+</div>
+
+
+<!-- About Us-->
+<section class="container section scrollspy" id="services">
+    <div class="row">
+        <div class="col s12 l4">
+            <h2 class="black-text text-darken-4">About Us...</h2>
+            <p>
+                We are one of the fastest growing classroom coaching platform of
+                Azamgarh aimed at helping students to achieve their dreams.
+                Our vision is to educate everyone in need and to guide them to secure a bright future.
+            </p>
+        </div>
+        <div class="col s12 l6 offset-l2">
+            <ul class="tabs">
+                <li class="tab col s6 ">
+                    <a href="#values" class="black-text text-darken-4">Values</a>
+                </li>
+                <li class="tab col s6 ">
+                    <a href="#achievement" class="black-text text-darken-4">Achievements</a>
+                </li>
+            </ul>
+            <div class="col s12" id="values">
+                <p class="flow-text block-text text-darken-4">Our Values</p>
+                <p>Being student oriented and helping them are our top priorities.
+                    We believe in the fact ,"No one ever loses ..either you win or you learn.."
+
+                </p>
+            </div>
+            <div class="col s12" id="achievement">
+                <p class="flow-text black-text text-darken-4">Achievements</p>
+                <p>We have seen many up brings and down brings in our journey.
+                    We now run different academic batches for school students alongwith skilled coaching like computer
+                    classes.
+                    We are also now preparing students for more than 20+ government examinations.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- parallax-->
+
+
+<!--Why us-->
+<section class="container">
+    <h2 class="center ">Why Us ?</h2>
+    <div class="divider "></div>
+</section>
+
+<section class="US row col s12 ">
+    <div class="US-wrapper col s12 m8 l3 push-l1 push-m1">
+        <h5 class="why-us white-text">FACULTIES</h5>
+
+        <div class="row col s12">
+            <h5 class="black-text text-darken-4">Experienced Faculties</h5>
+            <li>Highly qualified tutors</li>
+            <li>Good Student-teacher collabration</li>
+            <li>1 teacher per 10 students</li>
+            <li>Open and Adaptive teaching</li>
+            <li>Special care to weak students</li>
+        </div>
+    </div>
+    <div class="US-wrapper col s12 l3 m8  push-l1 push-m1 ">
+        <h5 class="why-us white-text">SERVICES</h5>
+        <div class="row col s12">
+            <h5 class="black-text text-darken-4">Modern Services</h5>
+            <li>Classes equipped with projectors</li>
+            <li> Air-Conditioned classrooms</li>
+            <li> 50+ computers</li>
+            <li> Online Practice Tests</li>
+            <li>Dedicated doubt Classes</li>
+            <li> Free wifi</li>
+        </div>
+    </div>
+
+    <div class="US-wrapper col s12  l3 m8  push-l1  push-m1">
+        <h5 class="why-us white-text">REVIEWS</h5>
+        <div class="row  col s12">
+            <h5 class="black-text text-darken-4">Best Reviews</h5>
+            <p>A positive review always reflects a good institution.
+                With one of the top coaching classes in Azamgarh ,we have got
+                very positive reviews from our students.</p>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- contact form-->
+
+<section class="section  container scrollspy" id="contact">
+    <div class="row">
+        <div class="col s12 l5">
+            <h2 class="black-text text-darken-4">Get In Touch </h2>
+            <p>Need some more words,,,??
+                Just mail us ..we will be more than happy to make this site visiting more valuable,,
+            </p>
+        </div>
+        <div class="col s11 l5 offset-11 push-l3  ">
+            <form method="post" id="myform">
+
+                <div class="input-field">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input type="text" maxlength="100" class="validate" name="your_name" id="id_your_name" required>
+                    <label for="id_your_name">Your Name</label>
+                </div>
+
+                <div class="input-field">
+                    <i class="material-icons prefix">mode_edit</i>
+                    <input type="text" maxlength="100" class="validate" name="subject" id="id_subject" required>
+                    <label for="id_subject">Your Subject</label>
+                </div>
+
+                <div class="input-field">
+                    <i class="material-icons prefix">message</i>
+                    <textarea class="materialize-textarea" name="message" id="id_message" required></textarea>
+                    <label for="id_message">Your Message</label>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">email</i>
+                    <input type="email" class="validate" name="email_id" id="id_email_id" required>
+                    <label for="id_email_id">Your Email</label>
+                    <span class="helper-text" data-error="wrong" data-success="right"></span>
+
+                </div>
+                <div class="input-field">
+                    <p>
+                        <label for="id_cc_myself">
+                            <input type="checkbox" name="cc_myself" id="id_cc_myself">
+                            <span> cc_myself</span>
+                        </label>
+                    </p>
+
+                </div>
+
+                <button class="btn" type="submit" required>Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+<!-- Compiled and minified JavaScript -->
+
+<script>
+    <!-- header image text -->
+    $(function () {
+        setTimeout(function () {
+            $('.welcome-section').removeClass('content-hidden');
+        }, 800);
+    });
+
+
+    $(document).ready(function () {
+        $('#myform').submit(function (e) {
+
+            e.preventDefault();
+            M.toast({
+                html: "Sending Message...."
+            });
+
+
+
+
+            function csrfSafeMethod(method) {
+                // these HTTP methods do not require CSRF protection
+                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+
+            $.ajaxSetup({
+                beforeSend: function (xhr, settings) {
+                    function getCookie(name) {
+                        var cookieValue = null;
+                        if (document.cookie && document.cookie !== '') {
+                            var cookies = document.cookie.split(';');
+                            for (var i = 0; i < cookies.length; i++) {
+                                var cookie = cookies[i].trim();
+                                // Does this cookie string begin with the name we want?
+                                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                    break;
+                                }
+                            }
+                        }
+                        return cookieValue;
+                    }
+
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                    }
+                }
+            });
+
+            $.ajax({
+                url: "",
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function (result) {
+
+                    alert('Thank you for your response! Message Sent!');
+                    $('input,textarea').val("");
+                    M.Toast.dismissAll();
+                },
+                 error: function (request, status, error) {
+                    alert(error);
+
+                }
+            });
+        });
+
+        $('.materialboxed').materialbox();
+        $('.parallax').parallax();
+        $('.tabs').tabs();
+        $('.tooltipped').tooltip();
+        $('.scrollspy').scrollSpy();
+        $(document).ready(function () {
+
+            $('.materialboxed').materialbox();
+            $('.parallax').parallax();
+            $('.tabs').tabs();
+        });
+
+
+    });
+</script>
+{% endblock %}
+
+

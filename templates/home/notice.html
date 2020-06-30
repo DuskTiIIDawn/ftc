@@ -1,0 +1,59 @@
+{% extends  'home/header.html'    %}
+ {% block title %} <title> F.T.C- NOTICES</title>{% endblock %}
+{% block s %}{% endblock %}
+{% block n %}{% endblock %}
+
+{% block c %}
+<li><a href="{% url 'home' %}#contact">INQUIRE</a></li>{% endblock  %}
+
+{% block fm %} {% endblock %}
+{% block pdfm %} {% endblock %}
+{% block sm %} {% endblock  %}
+{% block mm %}{% endblock  %}
+{% block nm %}{% endblock  %}
+{% block cm %}{% endblock  %}
+{% block cnm %}{% endblock  %}
+{% block im %}{% endblock  %}
+{% block lm %}  {% endblock %}
+{% block onlinem %}  {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% block body %}
+
+<div class="notice-nav black "></div>
+<div class="notice container  black-text ">
+    <h1 class="center ">Updates</h1>
+
+    <div class="notice-content">
+        {% if not notices %}
+        <h4> No notices yet</h4>
+        <h5>All important Notices and updates will be posted soon...</h5>
+        {% endif %}
+        {% for notice in notices %}
+        <h3>{{notice.about}}</h3>
+        <h5>{{notice.notice}}</h5>
+        <p>{{notice.release_date}}</p>
+        {% endfor %}
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+        $('.scrollspy').scrollSpy();
+    });
+</script>
+
+
+{% endblock %}

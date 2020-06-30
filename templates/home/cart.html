@@ -1,0 +1,58 @@
+<div>
+    <div id="cart_value">
+
+        <h4>MY CART</h4>
+        <table>
+            <thead>
+            <tr>
+                <th>Del.</th>
+                <th>S.No</th>
+                <th>Item Name</th>
+                <th>Item Price</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            {% for item in cart.items %}
+            <tr>
+                <td><a class="btn-floating btn-small waves-effect waves-light red removecart" quiz="{{item.0}}"
+                       title="{{item.1.quiz_title}}"><i class="material-icons">remove</i></a></td>
+                <td>{{ forloop.counter }}.</td>
+                <td>{{item.1.quiz_title}}</td>
+                <td>Rs {{item.1.price}}</td>
+            </tr>
+            {% endfor %}
+            <span>Total Items:{{total_items}}</span>
+            <span class="right">Total Price:Rs{{total_price}}</span>
+            </tbody>
+        </table>
+
+
+    </div>
+
+    <div id="cart_footer">
+        {% if total_items == 0 or  total_price == 0 %}
+
+        <button class="right btn disabled" >Place Order<i
+                class="material-icons right">shopping_cart</i></button>
+        <a class="btn-floating  orange modal-trigger left disabled " ><i
+                class="material-icons right">delete</i></a>
+        {% else %}
+         <form method="post" action="/checkout/" id="checkoutform">
+            {% csrf_token %}
+
+            <button class="right btn" type="submit">Place Order<i
+                    class="material-icons right">shopping_cart</i></button>
+        </form>
+        <a class="btn-floating  orange modal-trigger left" href="#modal1"><i
+                class="material-icons right">delete</i></a>
+        {% endif %}
+
+
+
+    </div>
+
+</div>
+
+

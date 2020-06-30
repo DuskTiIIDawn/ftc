@@ -1,0 +1,132 @@
+{% extends  'home/header.html'    %}
+{% block title %}<title> FREE PAPERS</title>{% endblock %}
+{% block s %} {% endblock  %}
+{% block m %}
+<li><a href="{% url 'progress' %}">My Progress</a></li> {% endblock  %}
+{% block n %}
+<li class="active"><a  href="{% url 'freepapers' %}">Free Papers</a></li>{% endblock  %}
+{% block c %}
+<li><a  href="{% url 'mypapers' %}">My Papers</a></li>
+{% endblock  %}
+{% block cn %}
+<li><a  href="{% url 'paidpapers' %}">Paid Papers</a></li> {% endblock  %}
+{% block i %} {% endblock %}
+{% block l %} {% endblock %}
+{% block f %} {% endblock %}
+
+
+{% block sm %} {% endblock  %}
+{% block mm %}
+<li><a href="{% url 'progress' %}"><i class="material-icons">military_tech</i>My Progress</a></li> {% endblock  %}
+{% block nm %}<li class="active"><a  href="{% url 'freepapers' %}"><i class="material-icons">money_off</i>Free Papers</a></li>{% endblock  %}
+{% block cm %}<li><a  href="{% url 'mypapers' %}"><i class="material-icons">receipt</i>My Papers</a>{% endblock  %}
+{% block cnm %}<li><a  href="{% url 'paidpapers' %}"><i class="material-icons">shopping_cart</i>Paid Papers</a></li>{% endblock  %}
+{% block im %}{% endblock  %}
+{% block lm %}  {% endblock %}
+{% block onlinem %}  {% endblock %}
+{% block pdfm %}  {% endblock %}
+{% block fm %}  {% endblock %}
+
+
+
+{% block body %}
+
+
+
+{% if not quizes %}
+<div class="row container">
+    <div class="card col s11 l5 m5 push-l3 push-m4 z-depth-5 hoverable" style="position:fixed;top:30vh;">
+        <div class="card-content ">
+            <h4> No free Quizes Available,,,</h4>
+            <h5>Go and explore paid section...</h5>
+
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+{% if quizes %}
+<div class="notice-nav"></div>
+<h4 style="font-weight: bold"> Free Quizes </h4>
+
+{% for quiz in quizes %}
+
+{% load quiz_tags %}
+{% ckeck_if_sitting_exist request.user quiz.id as mysitting %}
+{% check_if_secret_key quiz as issecretkey %}
+{% is_unlocked request quiz as isunlocked %}
+
+
+<div class="trialpapers">
+
+    <div class="row ">
+
+        <div class="card horizontal z-depth-5 col s11">
+            <div class="card-content col s12 l9 pull-l3 ">
+                {% if quiz.exam_paper == "True" %}
+                <div class="btn red flow-text " style="position:absolute;top:0;left:0;"><i
+                        class="material-icons left">access_alarm</i>EXAM
+                    PAPER
+                    {% if issecretkey %}{% if isunlocked %}<i class="material-icons right "> lock_open</i>{% else %}<i
+                            class="material-icons right "> lock</i>{% endif %}{% endif %}
+                </div>
+
+                {% endif %}
+                <span class="right col l3 push-l3" style="font-weight: bold">MARKS={% max_mark quiz.id %}</span>
+                {% if quiz.exam_paper == "False" %}
+                <div class="btn blue flow-text" style="position:absolute;top:0;left:0;">
+                    <i class="material-icons left">border_color</i>PRACTICE PAPER
+                    {% if issecretkey %}{% if isunlocked %}<i class="material-icons right "> lock_open</i>{% else %}<i
+                        class="material-icons right "> lock</i>{% endif %}{% endif %}
+                </div>
+                {% endif %}
+
+
+                <h5>{{quiz.title}}</h5>
+                <h6>{{quiz.description}}</h6>
+
+                <p>{{quiz.posting_date}}</p>
+
+                <div class="right col l3 push-l3">
+                    {% if mysitting == "True" %}
+                    <a href="quiz/{{quiz.id}}"
+                       class="btn-floating  green pulse black-text ">CONTINUE</a>
+
+                    {% elif mysitting == "False" %}
+                    <a href="quiz/{{quiz.id}}" class="btn green ">GIVE TEST</a>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+
+
+{% endblock %}
+{% block footer %}
+<div class="foote-copyright ">
+    <div class="center-align grey darken-4" style="position:fixed;bottom: 0px;width: 100%;">&copy; 2020 F.T.C. | website
+        by CrazyIITians
+    </div>
+</div>
+
+</div>
+<script>
+    $(document).ready(function () {
+          $('nav').addClass('sticky-nav');
+        $('.modal').modal();
+    })
+</script>
+
+{% endblock %}
+{% block nav-animation %}
+{% endblock %}

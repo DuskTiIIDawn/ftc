@@ -1,0 +1,148 @@
+{% extends  'home/header.html'    %}
+{% block title %}<title> QUIZ DETAILS</title>{% endblock %}
+{% block h %}{% endblock %}
+{% block hm %}{% endblock %}
+
+{% block s %} {% endblock  %}
+{% block m %} {% endblock  %}
+{% block n %}{% endblock  %}
+{% block c %}{% endblock  %}
+{% block cn %}{% endblock  %}
+{% block i %}  {% endblock %}
+{% block l %}  {% endblock %}
+{% block f %}  {% endblock %}
+
+
+
+{% block sidenav %}  {% endblock %}
+
+
+{% block sm %} {% endblock  %}
+{% block mm %} {% endblock  %}
+{% block nm %}{% endblock  %}
+{% block cm %}{% endblock  %}
+{% block cnm %}{% endblock  %}
+{% block im %}{% endblock  %}
+{% block lm %}  {% endblock %}
+{% block onlinem %}  {% endblock %}
+{% block pdfm %}  {% endblock %}
+
+
+{% block body %}
+<div class="notice-nav black "></div>
+
+
+<section class="registration">
+
+    <div class="notice container  black-text ">
+
+        <div class="card ">
+            <div class="container card-content ">
+                {% if quiz.single_attempt %}
+                <h5 class="blue-text"> You will only get one attempt at this quiz</h5>
+                {% endif %}
+                <h3 class="block">{{quiz.title}}</h3>
+
+                <p>{{quiz.description}}</p>
+                <h5>Question Division</h5>
+
+                {% if questions.count %}
+                {% load quiz_tags %}
+                <p class="right"> Max marks:{% max_mark quiz.id %}
+                <p>
+                <p> Total No of Questions= {{questions.count}}
+                <p>
+                    {% if quiz.exam_paper == "False" %}
+                <p class="right"> Test Timing: {{quiz.test_timing}}mins  </p>  <br>
+
+
+                    {% else %}
+                <p class="right"> Exam Timing: {{quiz.test_timing}}mins</p>
+
+                    {% endif %}
+
+
+
+
+                    {% load quiz_tags %}
+                    {% ckeck_if_sitting_exist request.user quiz.id as mysitting %}
+                    {% if mysitting == "True" and quiz.exam_paper == "False"%}
+              <p class="right"> Time Left: {% get_time_left request.user quiz.id %}mins
+                </p>
+                    {% endif %}
+
+
+                    {% endif %}
+
+
+                <div class="divider"></div>
+                <br>
+                {% if mcquestions.count %}
+                <li> No of MCQ Questions={{mcquestions.count}}</li>
+                {% endif %}
+                {% if tfquestions.count %}
+                <li>No of T/F Questions={{tfquestions.count}}</li>
+                {% endif %}
+                {% if essayquestions.count %}
+                <li>Total No of Essay Questions={{essayquestions.count}}</li>
+                {% endif %}
+
+            </div>
+            <div class="col s6 l4 ">
+                <ul>
+                    <li><a href="/quiz" class="btn">BACK</a></li>
+                    <br>
+
+
+                    {% if mysitting == "True" %}
+                    <li><a href="/quiz/question/{{quiz.id}}" class="btn green" id="start">CONTINUE</a></li>
+                    {% elif mysitting == "False" %}
+                    <li><a href="/quiz/question/{{quiz.id}}" class="btn green" id="start">START</a></li>
+                    {% endif %}
+
+
+                </ul>
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+
+    $(document).on('click', '#start', function (e) {
+        e.preventDefault();
+
+        urls = ($('#start')[0].href);
+        $.ajax({
+            url: urls,
+            success: function (result) {
+                $("section.registration").html(result);
+            },
+             error: function (request, status, error) {
+                    alert(request.text);
+
+                }
+
+        });
+s
+    });
+
+
+</script>
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
+

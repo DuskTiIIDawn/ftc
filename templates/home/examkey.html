@@ -1,0 +1,61 @@
+{% extends  'home/header.html'    %}
+{% block title %}<title> QUIZ SECRET KEY VERIFICATION</title>{% endblock %}
+{% block h %}{% endblock %}
+{% block hm %}{% endblock %}
+{% block s %}
+<li><a href="{% url 'quiz' %}">Quizes</a>{% endblock %}
+    {% block m %} {% endblock %}
+    {% block n %}{% endblock %}
+    {% block c %}{% endblock %}
+    {% block cn %}{% endblock %}
+    {% block i %} {% endblock %}
+    {% block l %} {% endblock %}
+    {% block f %} {% endblock %}
+
+
+
+
+
+    {% block sm %}
+<li><a href="{% url 'quiz' %}">Quizes</a>{% endblock %}
+    {% block mm %} {% endblock %}
+    {% block nm %}{% endblock %}
+    {% block cm %}{% endblock %}
+    {% block cnm %}{% endblock %}
+    {% block im %}{% endblock %}
+    {% block lm %} {% endblock %}
+    {% block onlinem %}{% endblock %}
+     {% block fm %} {% endblock %}
+    {% block pdfm %} {% endblock %}
+
+
+    {% block body %}
+    <div class="notice-nav black"></div>
+    <div class="row container">
+        <div class="card col s11 l5 m5 push-l3 push-m4 z-depth-5 hoverable" style="position:fixed;top:30vh;">
+            <div class="card-content ">
+                <form method="post" action="/quiz/examkey/{{quiz_id}}">
+                    {% csrf_token %}
+                    {{form}}
+                    <input class="btn green" type="submit" value="VERIFY">
+                    <a class="btn-floating waves-effect waves-light red right" href="{% url 'quiz' %}"><i
+                            class="material-icons">history</i></a>
+                </form>
+                {% if isunlocked == False %}
+                <script>
+                      M.toast({
+                html: "key incorrect."
+            });
+                </script>
+                 {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+    {% endblock %}
+
+    {% block footer %}
+
+    {% endblock %}
+

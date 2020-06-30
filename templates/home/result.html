@@ -1,0 +1,62 @@
+{% extends 'home/header.html' %}
+{% block title %}<title> RESULT</title>{% endblock %}
+{% block s %}<li><a href="{% url 'quiz' %}">Quizes</a></li> {% endblock  %}
+{% block m %}<li><a href="{% url 'progress' %}" >My Progress</a></li> {% endblock  %}
+{% block n %}<li><a href="{% url 'view_profile' %}">My Profile</a></li>{% endblock  %}
+{% block c %}{% endblock  %}
+{% block cn %}{% endblock  %}
+{% block i %} {% endblock %}
+{% block l %}  {% endblock %}
+{% block f %} {% endblock %}
+
+
+{% block cm %} {% endblock  %}
+{% block sm %}<li><a href="{% url 'quiz' %}">Quizes</a></li> {% endblock  %}
+{% block mm %}<li><a href="{% url 'progress' %}" >My Progress</a></li> {% endblock  %}
+{% block nm %}<li><a href="{% url 'view_profile' %}">My Profile</a></li>{% endblock  %}
+{% block cnm %}{% endblock  %}
+{% block im %}{% endblock  %}
+{% block lm %}  {% endblock %}
+{% block onlinem %}  {% endblock %}
+{% block pdfm %} {% endblock %}
+
+{% block body %}
+  <div style="height:63px; "class="black"></div>
+
+<section id="detail">
+    <div class="card" style="width:50vw;position: relative; transform: translate(50%, 50%)">
+        <div class="container card-content ">
+            <h3 class="flow-text" style="font-weight: bold">QUIZ COMPLETED</h3>
+            <p>Team FTC Thanks you for sitting <span
+                    style="font-weight: bold;text-decoration: underline">{{quiz.title}}</span> exam ! We appreciate your
+                Effort ...</p>
+            <p style="font-weight: bolder">STAY BOLD</p>
+            <br>
+            <a href="/quiz/progress/detail/{{quiz.id}}" class="btn" id="result">Results</a>
+
+        </div>
+    </div>
+
+
+</section>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    $(document).on('click', '#result', function (e) {
+        e.preventDefault();
+
+        url = ($('#result')[0].href);
+        $.get(url, function (results) {
+            var detail_data = $("#progress_detail_view", results);
+            $('#detail').html(detail_data);
+
+        }, "html").fail(function (request, status, error) {
+                    alert(error);
+
+                }) ;
+    });
+
+
+</script>
+{% endblock %}
+{% block footer %}
+{% endblock %}

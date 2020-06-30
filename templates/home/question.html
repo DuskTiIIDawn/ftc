@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+
+
+<h5 class="center">{{quiz.title}}</h5>
+<div class="row">
+
+    <div class="col s12">
+        <div class="col s3">
+             <form method="POST" action="" id="MyForm" >
+    <input  type="submit" class="btn red" name="submit" id="end_test" style="position: relative;top: 10px;"  value="End Test"/>
+    </form>
+        </div>
+
+
+    <h5 id="timer" class="col s3 push-l6 push-m6 push-s5"></h5>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col s12" >
+<ul class="pagination z-depth-1" id ="mytab" style="overflow-y:scroll;height: 100px;">
+    {% load quiz_tags %}
+    {% ckeck_if_sitting_exist request.user quiz.id as mysitting %}
+
+    {% if mysitting == "True" %}
+
+    {% for k,v in qd.items %}
+    {% get_answer request.user quiz.id v as ans %}
+    {% if ans %}
+    <li class="pagl" id="li{{k}}" ><a href="/quiz/question/{{quiz.id}}/?page={{k}}" class="navigation green lighten-3" id="tab{{v}}" page="{{k}}">{{k}}</a></li>
+    {% else %}
+    <li class="pagl" id="li{{k}}" ><a href="/quiz/question/{{quiz.id}}/?page={{k}}" class="navigation" id="tab{{v}}" page="{{k}}">{{k}}</a></li>
+    {% endif %}
+    {% endfor %}
+
+
+    {% elif mysitting == "False" %}
+    {% for k,v in qd.items %}
+
+     <li class="pagl" id="li{{k}}"><a href="/quiz/question/{{quiz.id}}/?page={{k}}" class="navigation" id="tab{{v}}" page="{{k}}">{{k}}</a></li>
+    {% endfor %}
+    {% endif %}
+
+
+
+</ul>
+    </div>
+</div>
+
+
+<div class="pagination container center" id="pagination">
+    <span class="step-links ">
+        {% if page_obj.has_previous %}
+
+
+            <a href="/quiz/question/{{quiz.id}}/?page={{ page_obj.previous_page_number }}" class="btn navigation" page="{{ page_obj.previous_page_number }}">previous<i class="material-icons left">chevron_left</i></a>
+        {% endif %}
+
+        {% if page_obj.has_next %}
+            <a href="/quiz/question/{{quiz.id}}/?page={{ page_obj.next_page_number }}" class="btn navigation" page="{{ page_obj.next_page_number }}" ><i class="material-icons right">chevron_right</i>next</a>
+
+        {% endif %}
+    </span>
+</div>
+
+
+
+<div class="card horizontal" id="ajax_table_result">
+
+    <div class="container row" id="question">
+
+
+        {% for question in page_obj %}
+        {% load quiz_tags %}
+        {% get_answer request.user quiz.id question.id as ans %}
+        <div class="center">
+
+            Question {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </div>
+        <p class="right">Max.Mark={{ question.max_mark}} / Neg.mark={{ question.negative_marking}}</p>
+        <p> Question {{ page_obj.number }}.</p>
+        <p>{{ question.content}}</p>
+
+        {% if question.mcquestion %}
+        <form action="#" id="input-form" method="get">
+            <p><label><input class="with-gap myinput" name="group1" type="radio"
+                             urans="{{ans}}" question="{{question.id}}" id="{{quiz.id}}/{{question.id}}option1"
+                             value="A"/><span>1).{{question.option1}}</span></label>
+            </p>
+            <p><label><input urans="{{ans}}" class="with-gap myinput" name="group1" type="radio"
+                             question="{{question.id}}"
+                             value="B"
+                             id="{{quiz.id}}/{{question.id}}option2"/><span>2).{{question.option2}}</span></label>
+            </p>
+            <p><label><input urans="{{ans}}" class="with-gap myinput" name="group1" type="radio"
+                             question="{{question.id}}"
+                             value="C"
+                             id="{{quiz.id}}/{{question.id}}option3"/><span>3).{{question.option3}}</span></label>
+            </p>
+            <p><label><input class="with-gap myinput" urans="{{ans}}" name="group1" type="radio"
+                             question="{{question.id}}"
+                             value="D"
+                             id="{{quiz.id}}/{{question.id}}option4"/><span>4).{{question.option4}}</span></label>
+            </p>
+
+            {% endif %}
+
+            {% if question.essay_question %}
+            <div class="input-field"><textarea urans="{{ans}}"
+                                               class=" myinput "
+                                               name="essayanswer"
+                                               spellcheck="false"
+                                               question="{{question.id}}" id="textarea1"></textarea>
+                <label for="textarea1">Your Answer</label>
+            </div>
+            {% endif %}
+
+            {% if question.tf_question %}
+            <div class="input-field"><p><label for="{{quiz.id}}{{question.id}}t"><input urans="{{ans}}" type="radio"
+                                                                                        name="group1" class="myinput"
+                                                                                        question="{{question.id}}"
+                                                                                        id="{{quiz.id}}{{question.id}}t"
+                                                                                        value="True"><span> True</span></label>
+            </p></div>
+            <div class="input-field"><p><label for="{{quiz.id}}{{question.id}}f"><input urans="{{ans}}" type="radio"
+                                                                                        class="myinput"
+                                                                                        name="group1"
+                                                                                        question="{{question.id}}"
+                                                                                        id="{{quiz.id}}{{question.id}}f"
+                                                                                        value="False"><span> False</span></label>
+            </p></div>
+            {% endif %}
+        </form>
+
+    </div>
+    {% endfor %}
+</div>
+
+
+<div class="extra"></div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        wireUpEvents();
+        loadInputLocalStorage();
+
+    });
+
+
+    function wireUpEvents() {
+        var btnRelease = document.getElementById('#nopopup');
+
+//Find the button set null value to click event and alert will not appear for that specific button
+        function setGlobal() {
+            window.onbeforeunload = null;
+        }
+
+        $(btnRelease).click(setGlobal);
+
+        // Alert will not appear for all links on the page
+        $('a').click(function () {
+            window.onbeforeunload = null;
+        });
+        window.onbeforeunload = function () {
+            return 'Are you sure you want to leave this page?';
+        };
+        window.onunload = function () {
+            alert(' Time Up! Paper Submitted');
+
+
+        }
+    }
+
+
+    var t_in_sec = parseFloat({% get_time_left request.user quiz.id %})*60;
+    countdown(t_in_sec);
+
+
+
+    function countdown(seconds) {
+        var countDownDate = new Date();
+        var count = 0;
+
+        function tick() {
+            var now = new Date();
+            var distance = parseInt((now - countDownDate) / 1000);
+            if (distance >= seconds) {
+                window.onbeforeunload = null;
+                $.ajax({
+                    url: '/quiz/{{quiz.id}}/',
+                    type: 'POST',
+                    error: function (request, status, error) {
+                        alert(error);
+
+                    }
+                }).done(function () {
+                    alert("Time Up! Quiz  Submitted");
+                    count = 2;
+                });
+                setTimeout(function () {
+                    location.href = '/quiz/result/{{quiz.id}}'
+                }, 3000);
+                return;
+            }
+
+            var time_left = (seconds - distance);
+
+            //making server ajax call every three second
+            if (time_left > 3 && time_left % 3 == 0) {
+                var time_left_in_min = (time_left / 60);
+                $.ajax({
+                    url: '/quiz/timer/{{quiz.id}}/',
+                    type: 'POST',
+                    data: {'time_left_in_min': time_left_in_min},
+                    success: function () {
+                        if (count == 1) {
+                            alert("connection re-established");
+                            count = 0;
+                        }
+                    }
+
+                });
+            }
+            $(this).ajaxError(function (event, request, settings) {
+                //When XHR Status code is 0 there is no connection with the server
+                if (request.status == 0 && count == 0) {
+                    alert("Communication with the server is lost!");
+                    count = 1;
+                }
+
+            });
+
+
+            var counter = document.getElementById("timer");
+            var hours = parseInt(time_left / 3600);
+            var current_minutes = parseInt((time_left % 3600) / 60);
+            var current_seconds = parseInt(time_left % 60);
+            counter.innerHTML = (hours < 10 ? "0" : "") + hours + ":" + (current_minutes < 10 ? "0" : "") + current_minutes + ":" + (current_seconds < 10 ? "0" : "") + current_seconds;
+            if (distance < seconds) {
+                setTimeout(tick, 1000);
+            }
+        }
+
+        tick();
+    }
+
+
+    function loadInputLocalStorage() {
+
+        var setCheck;
+        $('input[type=radio]').each(function (index) {
+            var urans = $(this).attr('urans');
+            if (urans != "None") {
+                if (urans == $(this).val()) {
+                    setCheck = this;
+                    $(this).prop("checked", 'true');
+                }
+
+            }
+
+            $(this).on('click', function () {
+                if (setCheck != this) {
+                    setCheck = this;
+                } else {
+                    this.checked = false;
+                    setCheck = null;
+                }
+            });
+
+        });
+
+        $('textarea').each(function (index) {
+            var urans = $(this).attr('urans');
+
+            if (urans != "None") {
+
+                $(this).val(urans);
+                M.textareaAutoResize($(this));
+
+                M.updateTextFields();
+            }
+            $(this).keyup(function (e) {
+                M.textareaAutoResize($(this));
+
+
+            });
+
+        });
+
+
+        $(' textarea ').on("change", function () {
+            var question_id, guess;
+            question_id = $(this).attr('question');
+            var v = $(this).val();
+            if (v) {
+                guess = v;
+            } else {
+                guess = "_NO_ANSWER_";
+            }
+            $.ajax({
+                url: '/quiz/result/{{quiz.id}}/',
+                type: 'POST',
+                data: {'question_id': question_id, 'guess': guess},
+                error: function (request, status, error) {
+                    alert(request.text);
+
+                }
+
+            }).done(function () {
+                 if(guess == "_NO_ANSWER_"){
+                    $("#tab"+question_id).removeClass("green lighten-3");
+
+                }
+                else{
+                    $("#tab"+question_id).addClass("green lighten-3");
+
+                }
+
+            });
+        });
+
+
+        $('input[type=radio]').on("click", function () {
+            var question_id, guess;
+            question_id = $(this).attr('question');
+            if (!($(this).is(":checked"))) {
+                guess = "_NO_ANSWER_";
+            } else {
+                guess = $(this).val();
+            }
+            $.ajax({
+                url: '/quiz/result/{{quiz.id}}/',
+                type: 'POST',
+                data: {'question_id': question_id, 'guess': guess},
+                error: function (request, status, error) {
+                    alert(error);
+                }
+            }).done(function () {
+                if(guess == "_NO_ANSWER_"){
+                    $("#tab"+question_id).removeClass("green lighten-3");
+
+                }
+                else{
+                    $("#tab"+question_id).addClass("green lighten-3");
+                }
+            });
+        });
+
+    }
+
+
+    function ajax_get_update() {
+        wireUpEvents();
+        var jqxhr = $.get(url, function (results) {
+            var questionss = $("#question", results);
+            var page = $("span.step-links", results);
+
+            $('#ajax_table_result').html(questionss);
+            $('#pagination').html(page);
+
+        }, "html")
+            .done(function () {
+                loadInputLocalStorage();
+
+
+        })
+            .fail(function(){
+            alert("error");
+        });
+
+
+    }
+
+    $(document).on('click', '.navigation', function (e) {
+        e.preventDefault();
+        url = $(this).attr('href');
+        ajax_get_update();
+        var page=  $(this).attr('page');
+        $('.pagl').removeClass("active");
+        $("#li"+page).addClass("active");
+    });
+
+
+
+</script>
+</body>
+</html>
+

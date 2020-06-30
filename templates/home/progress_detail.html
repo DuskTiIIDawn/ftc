@@ -1,0 +1,118 @@
+
+<div>
+    <div id="progress_detail_view">
+
+
+<script>
+
+    // Load google charts
+    google.charts.load('current', {'packages': ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Draw the chart and set the chart values
+    function drawChart() {
+        var data1 = google.visualization.arrayToDataTable([
+            ['Question Category', 'Number'],
+            ['Question correct', {{quiz_result.no_of_question_correct}}],
+            ['Question incorrect', {{quiz_result.no_of_question_incorrect}}],
+            ['Question left',{{quiz_result.no_of_question_left}}],
+
+        ]);
+        var total_no_of_questions={{quiz_result.no_of_question_correct}}+{{quiz_result.no_of_question_incorrect}}+{{quiz_result.no_of_question_left}}
+        // Optional; add a title and set the width and height of the chart
+        var options1 = {'title': '{{quiz_result.quiz_title}}/Question quantity Analysis out of'+ ' '  +total_no_of_questions +' ' +'questions'
+            ,colors: ['green', 'red','orange'],  'height': 400};
+
+        // Display the chart inside the <div> element with id="piechart"
+        var chart1 = new google.visualization.PieChart(document.getElementById('piechart1'));
+        chart1.draw(data1, options1);
+
+
+        var data2 = google.visualization.arrayToDataTable([
+            ['Question Category', 'Marks'],
+             ['Correct Answered Marks ', {{quiz_result.correct_answered_marks}}],
+            ['Incorrect Answered Marks', {{quiz_result.incorrect_answered_mark}}],
+         ['Marks left',{{quiz_result.marks_left}} ],
+
+
+        ]);
+
+        // Optional; add a title and set the width and height of the chart
+        var options2 = {'title': '{{quiz_result.quiz_title}}/Marks Analysis out of {{quiz_result.max_mark_of_quiz}} Marks',
+            colors: ['green', 'red','orange'], 'height': 400};
+
+        // Display the chart inside the <div> element with id="piechart"
+        var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
+        chart2.draw(data2, options2);
+
+        if({{quiz_result.negative_marks}} != 0){
+              var data3 = google.visualization.arrayToDataTable([
+            ['Question Category', 'Marks'],
+        ['Negative Marks', {{quiz_result.negative_marks}}],
+         ['Others',{{quiz_result.max_mark_of_quiz}} - {{quiz_result.negative_marks}} ],
+
+        ]);
+
+        // Optional; add a title and set the width and height of the chart
+        var options3 = {'title': '{{quiz_result.quiz_title}}/Negative Marks Analysis out of {{quiz_result.max_mark_of_quiz}} Marks',
+            colors: ['green', '#fff'], 'height': 400};
+
+        // Display the chart inside the <div> element with id="piechart"
+        var chart3 = new google.visualization.PieChart(document.getElementById('piechart3'));
+        chart3.draw(data3, options3);
+
+        }
+
+    }
+
+    </script>
+
+         {% load quiz_tags %}
+        {% check_if_hide_result quiz_id as hide_result %}
+        {% if hide_result == False  or hide_result == "NO" %}
+
+        <div class="row container">
+            <div class="card col s12 z-depth-5">
+
+             <h4>{{quiz_result.quiz_title}} Detailed Analysis</h4>
+            </div>
+
+            <div class="card col s12 grey" >
+                <p class="col s12">TOUCH THE CHART TO GET DATA</p>
+                <div class="card col s12 z-depth-5">
+                <div class="col l6 s12"  id="piechart2"></div>
+                <div class="col l6 s12" id="piechart3">
+                    {%  if quiz_result.negative_marks == 0 %}
+                    <p> !! No negative marks were added !!</p>
+                    {% endif%}
+                </div>
+                </div>
+                <div class="card col l6 s12 z-depth-5">
+
+                 <div id="piechart1"></div>
+                </div>
+                <div class="card col l5 push-l1 s12 z-depth-5">
+                    <h4>{{quiz_result.quiz_title}}</h4>
+                <p>NET SCORE :{{quiz_result.net_score}}/{{quiz_result.max_mark_of_quiz}} </p>
+                <p>FINAL PERCENTAGE SCORED: {{quiz_result.percentage_scored}}%</p>
+                <p>RESULT :{{quiz_result.result}}</p>
+                </div>
+
+            </div>
+        </div>
+        {% else %}
+         <div class="row container">
+            <div class="card col s12 z-depth-5">
+                <div class="card-content">
+                    <h4>Sorry! You Are Not Allowed To See Result For Now,,</h4>
+
+                </div>
+            </div>
+         </div>
+        {% endif %}
+
+
+
+
+    </div>
+</div>

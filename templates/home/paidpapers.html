@@ -1,0 +1,299 @@
+{% extends  'home/header.html'    %}
+{% block title %}<title>PAID PAPERS</title>{% endblock %}
+{% block s %} {% endblock  %}
+{% block m %}
+<li><a href="{% url 'progress' %}">My Progress</a></li> {% endblock  %}
+{% block n %}
+<li><a  href="{% url 'freepapers' %}">Free Papers</a></li>{% endblock  %}
+{% block c %}
+<li><a  href="{% url 'mypapers' %}">My Papers</a></li>
+{% endblock  %}
+{% block cn %}
+<li class="active"><a  href="{% url 'paidpapers' %}">Paid Papers</a></li> {% endblock  %}
+{% block i %} {% endblock %}
+{% block l %} {% endblock %}
+{% block f %} {% endblock %}
+
+
+{% block sm %} {% endblock  %}
+{% block mm %}
+<li><a href="{% url 'progress' %}"><i class="material-icons">military_tech</i>My Progress</a></li> {% endblock  %}
+{% block nm %}<li><a  href="{% url 'freepapers' %}"><i class="material-icons">money_off</i>Free Papers</a></li>{% endblock  %}
+{% block cm %}<li><a  href="{% url 'mypapers' %}"><i class="material-icons">receipt</i>My Papers</a>{% endblock  %}
+{% block cnm %}<li class="active"><a  href="{% url 'paidpapers' %}"><i class="material-icons">shopping_cart</i>Paid Papers</a></li>{% endblock  %}
+{% block im %}{% endblock  %}
+{% block lm %}  {% endblock %}
+{% block onlinem %}  {% endblock %}
+{% block pdfm %}  {% endblock %}
+{% block fm %}  {% endblock %}
+
+{% block body %}
+
+
+<style>
+    @media screen and (min-width: 600px) {
+        .scroll {
+            unicode-bidi: bidi-override;
+            direction: rtl;
+            overflow: scroll;
+            overflow-x: hidden !important;
+        }
+
+
+        #cartfooter {
+            top: 20px;
+            position: relative;
+            padding: 0px 10px;
+        }
+
+
+        #cart {
+            border-bottom: 12vh solid black;
+            border-left: 5px solid black;
+            border-right: 5px solid black;
+            position: fixed;
+            top: 10%;
+            right: 0%;
+            width: 40vw;
+            height: 87vh;
+            box-shadow: -10px 10px 10px 5px grey;
+
+        }
+
+        #mycart {
+            padding: 20px 10px 20px 20px;
+
+            height: 74vh;
+            direction: ltr;
+        }
+    }
+
+
+</style>
+{% if not quizes %}
+
+<div class="row container">
+    <div class="card col s11 l5 m5  z-depth-5 hoverable" style="position:fixed;top:30vh;">
+        <div class="card-content ">
+            <h4> New Quizes in this category will be posted soon,,,</h4>
+            <h5>Stay Connected...</h5>
+
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div id="modal2" class="modal bottom-sheet modal-fixed-footer">
+    <div id="cart">
+        <div id="cartrow">
+            <div class="modal-content">
+
+
+                <div id="mycart">
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer grey" id="cartfooter">
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+{% if quizes %}
+
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        Do yoy Really want to empty the cart ?
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn-flat">NO</a>
+        <a class="modal-close waves-effect waves-red btn-flat" id="emptycart">YES</a>
+    </div>
+</div>
+
+<div class="notice-nav"></div>
+
+
+<h4 style="font-weight: bold"> Paid Quizes </h4>
+<div id="paidpapers">
+    {% load quiz_tags %}
+    {% cart_list request.user as cart_list %}
+
+    {% for quiz in quizes %}
+
+    {% check_if_secret_key quiz as issecretkey %}
+
+        <div class="row ">
+            <div class="card horizontal z-depth-5 col s12 l7 m6">
+                <div class="card-stacked">
+                    <div class="card-content l7">
+                        {% if quiz.exam_paper == "True" %}
+                        <div class="btn red flow-text " style="position:absolute;top:0;left:0;"><i
+                                class="material-icons left">access_alarm</i>EXAM
+                            PAPER
+                            {% if issecretkey %}<i
+                                    class="material-icons right "> lock</i>{% endif %}
+                        </div>
+
+                        {% endif %}
+                        <span class="right " style="font-weight: bold">MARKS={% max_mark quiz.id %}</span>
+                        {% if quiz.exam_paper == "False" %}
+                        <div class="btn blue flow-text" style="position:absolute;top:0;left:0;">
+                            <i class="material-icons left">border_color</i>PRACTICE PAPER
+                            {% if issecretkey %}<i
+                                class="material-icons right "> lock</i>{% endif %}
+                        </div>
+                        {% endif %}
+
+
+                        <h5>{{quiz.title}}</h5>
+                        <h6>{{quiz.description}}</h6>
+
+                        <p>{{quiz.posting_date}}</p>
+                    </div>
+
+
+                    <span class="card-title">Time:{{quiz.test_timing}}min</span>
+                    <div class="card-action">
+                        <a class="btn green">Rs {{quiz.price}}/{{quiz.days}}Days</a>
+                        {% if quiz.id in cart_list%}
+
+                        <a class="btn disabled addcart right"><i class="material-icons">add_shopping_cart</i></a>
+                        {% else %}
+                        <a class="btn addcart right" quiz="{{quiz.id}}"
+                           title="{{quiz.title}}"><i class="material-icons">add_shopping_cart</i></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+
+</div>
+    {% endif %}
+
+
+    {% endblock %}
+    {% block footer %}
+
+    <div class="center-align black hide-on-med-and-up" style="position:fixed;bottom: 0px;width: 100%;" id="cartmodal">
+        <a class="btn-floating orange modal-trigger btn-large" href="#modal2"><i
+                class="material-icons">shopping_cart</i></a>
+
+    </div>
+
+    <div class="foote-copyright hide-on-med-and-down ">
+        <div class="center-align grey darken-4" style="position:fixed;bottom: 0px;width: 100%;">&copy; 2020 F.T.C. |
+            website
+            by CrazyIITians
+        </div>
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+        $('nav').addClass('sticky-nav');
+        $('.modal').modal();
+
+        ajax_get_update1();
+        hidemodal();
+        $("#mycart").wrap("<div class='scroll'></div>");
+    });
+    $(window).resize(function () {
+        hidemodal();
+    });
+
+    function hidemodal() {
+        if ($(window).width() <= 600) {
+            $("#modal2").addClass("modal");
+        }
+        if ($(window).width() > 600) {
+            $("#modal2").removeClass("modal");
+        }
+
+    }
+
+
+    function ajax_get_update1() {
+         $("#mycart").load("/updatecart #cart_value");
+          $("#cartfooter").load("/updatecart #cart_footer");
+    };
+     function ajax_get_update2() {
+         $("#paidpapers").load(location.href+" #paidpapers");
+
+     }
+
+
+
+    $('body').on("click", ".addcart", function () {
+
+        quiz_id = $(this).attr('quiz');
+        quiz_title = $(this).attr('title');
+
+        $.ajax({
+            url: '/updatecart/',
+            type: 'POST',
+            data: {'quiz_id': quiz_id, 'action': 'ADD'},
+            error: function (request, status, error) {
+                alert(request.text);
+            }
+
+        }).done(function () {
+            ajax_get_update1();
+            ajax_get_update2();
+
+            alert(quiz_title + " " + "added to cart successfully");
+
+
+        });
+    });
+
+
+    $('body').on("click", '.removecart', function () {
+
+        quiz_id = $(this).attr('quiz');
+        quiz_title = $(this).attr('title');
+
+        $.ajax({
+            url: '/updatecart/',
+            type: 'POST',
+            data: {'quiz_id': quiz_id, 'action': 'REMOVE'},
+            error: function (request, status, error) {
+                alert(request.text);
+            }
+
+        }).done(function () {
+            ajax_get_update1();
+            ajax_get_update2();
+            alert(quiz_title + " " + "removed from cart successfully");
+        });
+    });
+    $('body').on("click", '#emptycart', function () {
+        $.ajax({
+            url: '/updatecart/',
+            type: 'POST',
+            data: {'action': 'EMPTY'},
+            error: function (request, status, error) {
+                alert(request.text);
+            }
+        }).done(function () {
+            ajax_get_update1();
+             ajax_get_update2();
+            alert("Cart is Empty now!");
+        });
+    });
+</script>
+
+{% endblock %}
+{% block nav-animation %}
+{% endblock %}
+
+

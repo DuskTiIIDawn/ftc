@@ -1,0 +1,344 @@
+
+header {
+    background-image: url(images/1.jpg);
+    background-position: center;
+    min-height: 100vh;
+    background-size: cover;
+    top: 0 !important;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+nav {
+    background: none !important;
+    min-height: 40px;
+    padding-bottom: 0px;
+    z-index: 10;
+    position: fixed;
+    top: 0%;
+
+}
+
+.sticky-nav {
+    position: fixed;
+    background: black !important;
+    transition: 0.35s all ease;
+    min-height: 10px;
+
+}
+
+.brand-logo img {
+    height: 70px;
+    width: 130px;
+
+}
+
+.gymlogo img {
+    height: 80px;
+    width: 180px;
+
+}
+
+
+.notice-nav {
+    height: 100px;
+}
+
+.notice {
+    min-height: 40vh;
+}
+
+.notice h1 {
+    position: relative;
+    top: 20px;
+    text-decoration: underline;
+}
+
+.notice-content {
+    margin-bottom: 20px;
+}
+
+
+<!--
+-->
+@media screen and ( min-width: 670px) {
+    nav .gymlogo {
+        margin-left: 50px;
+    }
+
+    nav .logo {
+        margin-left: 50px;
+    }
+
+
+    .US {
+        margin: 0 auto;
+        min-height: 400px;
+
+    }
+
+    .US-wrapper {
+
+        position: relative;
+        border: 1px solid black;
+        border-left: 50px solid black;
+        border-top: 4px solid black;
+        padding: 15px;
+        display: inline-block;
+        top: 50px;
+        left: 1vw;
+        margin-right: 20px;
+        min-height: 250px !important;
+        margin-bottom: 20px;
+
+
+    }
+
+    .why-us {
+        transform: rotate(270deg);
+        transform-origin: 0 0;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin-left: -45px;
+    }
+
+    .parallax-container {
+        height: 60vh !important;
+    }
+
+}
+
+
+<!--
+-->
+@media screen and ( max-width: 670px) {
+    .parallax-container {
+        height: 150px !important;
+    }
+
+
+    .US {
+
+        width: 90vw;
+        margin: 0 auto;
+        min-height: 400px;
+    }
+
+    .US-wrapper {
+
+        min-height: 250px !important;
+        position: relative;
+        border: 2px solid black;
+        border-top: 50px solid black;
+        padding: 15px;
+        display: inline-block;
+        top: 50px;
+        left: 1vw;
+        margin-bottom: 10px;
+
+    }
+
+    .why-us {
+        position: absolute;
+        top: -50px;
+        left: 10px;
+
+    }
+}
+
+
+<!--
+-->
+
+.content-wrap {
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    top: 50%;
+    left: 31%;
+    transform: translate(-20%, -50%);
+
+}
+
+.fly-in-text {
+    list-style: none;
+    text-align: center;
+
+}
+
+.fly-in-text li {
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 10vmax;
+    color: #fff;
+    opacity: 1;
+    transition: all 3s ease;
+
+}
+
+.theme {
+    display: block;
+    text-align: center;
+    font-size: 3vmax;
+    text-decoration: underline;
+    color: #fff;
+    opacity: 1;
+    margin-top: 10px;
+    transition: all 1s ease 3s;
+
+}
+
+.content-hidden .fly-in-text li {
+    opacity: 0;
+}
+
+.content-hidden .fly-in-text li:nth-child(1) {
+    transform: translate(-100px, 0);
+}
+
+.content-hidden .fly-in-text li:nth-child(2) {
+    transform: translate(-80px, 0);
+}
+
+.content-hidden .fly-in-text li:nth-child(3) {
+    transform: translate(-70px, 0);
+}
+
+
+.content-hidden .theme {
+    opacity: 0;
+    transform: translate3d(0px, -30px, 0px);
+}
+
+
+.section-follow .fa-4x {
+
+    margin: 5px 10px;
+}
+
+.mycard {
+    min-height: 50vh !important;
+}
+
+.btn {
+    text-transform: none !important;
+}
+
+.extra {
+    height: 50px;
+}
+
+
+.sk-folding-cube {
+    position: absolute;
+    top: 48%;
+    left: 48%;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    -webkit-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+}
+
+.sk-folding-cube .sk-cube {
+    float: left;
+    width: 50%;
+    height: 50%;
+    position: relative;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.sk-folding-cube .sk-cube:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+    animation: sk-foldCubeAngle 2.4s infinite linear both;
+    -webkit-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+}
+
+.sk-folding-cube .sk-cube2 {
+    -webkit-transform: scale(1.1) rotateZ(90deg);
+    transform: scale(1.1) rotateZ(90deg);
+}
+
+.sk-folding-cube .sk-cube3 {
+    -webkit-transform: scale(1.1) rotateZ(180deg);
+    transform: scale(1.1) rotateZ(180deg);
+}
+
+.sk-folding-cube .sk-cube4 {
+    -webkit-transform: scale(1.1) rotateZ(270deg);
+    transform: scale(1.1) rotateZ(270deg);
+}
+
+.sk-folding-cube .sk-cube2:before {
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+}
+
+.sk-folding-cube .sk-cube3:before {
+    -webkit-animation-delay: 0.6s;
+    animation-delay: 0.6s;
+}
+
+.sk-folding-cube .sk-cube4:before {
+    -webkit-animation-delay: 0.9s;
+    animation-delay: 0.9s;
+}
+
+@-webkit-keyframes sk-foldCubeAngle {
+    0%, 10% {
+        -webkit-transform: perspective(140px) rotateX(-180deg);
+        transform: perspective(140px) rotateX(-180deg);
+        opacity: 0;
+    }
+    25%, 75% {
+        -webkit-transform: perspective(140px) rotateX(0deg);
+        transform: perspective(140px) rotateX(0deg);
+        opacity: 1;
+    }
+    90%, 100% {
+        -webkit-transform: perspective(140px) rotateY(180deg);
+        transform: perspective(140px) rotateY(180deg);
+        opacity: 0;
+    }
+}
+
+@keyframes sk-foldCubeAngle {
+    0%, 10% {
+        -webkit-transform: perspective(140px) rotateX(-180deg);
+        transform: perspective(140px) rotateX(-180deg);
+        opacity: 0;
+    }
+    25%, 75% {
+        -webkit-transform: perspective(140px) rotateX(0deg);
+        transform: perspective(140px) rotateX(0deg);
+        opacity: 1;
+    }
+    90%, 100% {
+        -webkit-transform: perspective(140px) rotateY(180deg);
+        transform: perspective(140px) rotateY(180deg);
+        opacity: 0;
+    }
+}
+
+
+.cube-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ff6347;
+    z-index: 999999;
+}

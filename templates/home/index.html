@@ -1,0 +1,219 @@
+{% extends  'home/header.html'    %}
+{% block logo %} <a id="logo-container" href="#" class="brand-logo gymlogo">{% load static %}<img
+        src="{% static 'home/images/gymlogo.png' %}"> </a>{% endblock %}
+{% block s %}
+<li><a href="#gymservices">SERVICES</a></li>{% endblock %}
+{% block sm %}
+<li><a href="#gymservices">SERVICES</a></li>{% endblock %}
+{% block c %}
+<li><a href="{% url 'home' %}#contact">INQUIRE</a></li>{% endblock  %}
+{% block cm %}
+<li><a href="{% url 'home' %}#contact">INQUIRE</a></li>{% endblock  %}
+{% block i %}
+<li><a href="{% url 'home' %}" class="waves-effect waves-light btn black tooltipped" data-tooltip="F.T.C">HOMEPAGE</a>
+</li> {% endblock %}
+{% block mm %}{% endblock %}
+{% block m %}{% endblock %}
+{% block h %}{% endblock %}
+{% block hm %}{% endblock %}
+{% block n %}{% endblock %}
+{% block nm %}{% endblock %}
+
+{% block f %}  {% endblock %}
+{% block onlinem %}  {% endblock %}
+{% block pdfm %}  {% endblock %}
+
+
+{% block body %}
+
+<!-- section :slider-->
+<section class="slider gym ">
+    <ul class="slides">
+        <li>{% load static %}<img src="{% static 'home/images/gym.jpg' %}">
+            <div class="caption center-align">
+                <h3>Be Stronger Than Your Excuses !</h3>
+                <h5 class="light grey-text text-lighten-3">Join us today and discover yourself....</h5>
+            </div>
+        </li>
+        <li>{% load static %}<img src="{% static 'home/images/gym3.jpg' %}"> <!-- random image -->
+            <div class="caption left-align">
+                <h3>Running To The Future...</h3>
+                <h5 class="light grey-text text-lighten-3">Feel The Most Empowering Fitness Experiance...</h5>
+            </div>
+        </li>
+        <li>{% load static %}<img src="{% static 'home/images/gym2.jpg' %}"> <!-- random image -->
+            <div class="caption right-align">
+                <h3>Get Ready to see your real you...</h3>
+                <h5 class="light grey-text text-lighten-3">If you appreciate quality, then we are for you...</h5>
+            </div>
+        </li>
+    </ul>
+</section>
+
+<!--   Icon Section   -->
+
+<div class="container">
+    <div class="section">
+
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center black-text"><i class="material-icons medium">plus_one</i></h2>
+                    <h5 class="center">Why are we "unique"</h5>
+                    <p class="light">We provide state of the art training amenities along with exclusive membership
+                        privileges
+                        and professional trainers at the best gym in Azamgarh.
+                        Our specialists also provide special therapy for the pain in joints and guide you
+                        to be best version of yourself.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center black-text"><i class="material-icons medium">group</i></h2>
+                    <h5 class="center">Dedicated to Users</h5>
+                    <p class="light">Our services looks to create a unique and memorable experience while adding value
+                        at the same time.
+                        We take regular feedback from our customers and try to give you best of us. It's our valuable
+                        members that we
+                        care most.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center black-text"><i class="material-icons medium">fitness_center</i></h2>
+                    <h5 class="center">Our policies</h5>
+                    <div class="light">
+                        <li>Health and safety</li>
+                        <li>Quality</li>
+                        <li>Social responsibility</li>
+                        <li>User care</li>
+                        <li>Easy to work with</li>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- cards-->
+<section class="container">
+    <h3 class="center service scrollspy" id="gymservices">Services</h3>
+    <div class="divider"></div>
+</section>
+
+
+<section class="container section ">
+    <div class="row">
+        <div class="col s12 m6 l3 ">
+            <div class="card mycard">
+                <div class="card-image waves-effect waves-block waves-light">
+                    {% load static %}
+                    <img class="activator" src="{% static 'home/images/nutrition.jpg' %}">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4"> Nutritional Counseling<i
+                            class="material-icons right">more_vert</i></span>
+
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Nutritional Counseling<i
+                            class="material-icons right">close</i></span>
+                    <p>
+                        Our nutritionists help you with your nutritional program. Proper nutrition is an essential
+                        complement to exercise for high energy, and lasting health.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6 l3">
+            <div class="card mycard">
+                <div class="card-image waves-effect waves-block waves-light">
+                    {% load static %}
+                    <img class="activator" src="{% static 'home/images/gymvariety.jpg' %}">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Variety of Equipment<i
+                            class="material-icons right">more_vert</i></span>
+
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Variety of Equipment<i
+                            class="material-icons right">close</i></span>
+                    <p>We offer 12 different lines of the newest technology in cardiovascular and toning equipment. No
+                        two pieces of toning equipment are the same on our exercise floors,
+                        there’s plenty of opportunity to switch up your routine to avoid plateauing.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 m6 l3">
+            <div class="card mycard">
+                <div class="card-image waves-effect waves-block waves-light">
+                    {% load static %}
+                    <img class="activator" src="{% static 'home/images/training.jpg' %}">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Training Personalised<i
+                            class="material-icons right">more_vert</i></span>
+
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4"> Training Personalised<i
+                            class="material-icons right">close</i></span>
+                    <p>We offer all members 1 hour of free personal training per member, per month .
+                        Our certified personal trainers work with you, one on one, as you systematically change programs
+                        every month.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6 l3">
+            <div class="card mycard">
+                <div class="card-image waves-effect waves-effect waves-block waves-light">
+                    {% load static %}
+                    <img class="activator" src="{% static 'home/images/knee.jpg' %}">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Medical Monitoring<i
+                            class="material-icons right">more_vert</i></span>
+
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Medical Monitoring<i class="material-icons right">close</i></span>
+                    <p>Specialists work in our clubs and play a key role in monitoring your health. They can monitor
+                        your heart and circulatory system,
+                        measure and weigh you, and chart your percentage of body fat. They also work on any kind of pain
+                        in joints and muscles.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Compiled and minified JavaScript -->
+<!--  Scripts-->
+
+
+<script>
+    $(document).ready(function () {
+        $(".slider").slider({
+            fullWidth: true,
+            indicators: false,
+            height: 700,
+            interval: 4000
+        });
+
+        $('.scrollspy').scrollSpy();
+
+    });
+</script>
+{% endblock %}

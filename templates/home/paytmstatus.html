@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Status</title>
+</head>
+<body>
+<div class="container">
+
+    <div class="col my-4">
+
+
+        <h2>Payment status regarding your order</h2>
+        {% if order_status == 'SUCCESS' %}
+        {{order_details}}
+
+        ORDER SUCCESS
+        {% elif  order_status == 'FAILED'%}
+        ORDER FAILURE
+        Your order failed because of {{message}}
+
+        {% endif%}
+
+    </div>
+
+</div>
+
+</body>
+</html>

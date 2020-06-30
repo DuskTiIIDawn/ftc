@@ -1,0 +1,41 @@
+{% extends  'home/header.html'    %}
+{% block body %}
+<div class="notice-nav black "></div>
+<div class="notice container  black-text ">
+    <section class="registration  ">
+        <div class="card ">
+            <div class="container card-content ">
+                <h3>Login</h3>
+                <form method="post" class="col s12">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix ">person_pin</i>
+                            <input type="text" class="validate" name="login_email_or_username" id="myidentity" required>
+                            <label for="myidentity">Registered Email or Username</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 ">
+                            <i class="material-icons prefix">lock_outline</i>
+                            <input maxlength="100" type="password" class="validate" name="password" id="mypassword"
+                                   required>
+                            <label for="mypassword">Password</label>
+                        </div>
+                    </div>
+                    <input class="btn" type="submit" value="Submit" name="CreateUser" required>
+                </form>
+            </div>
+            {% for message in messages %}
+            <p id="messages">{{message}}</p>
+            {% endfor %}
+            <div class="col s12 center" class="card-action">
+                <span class="card-action">Don't have an account? <a href="{% url 'registration' %}"
+                                                                    class="ml-2">SignUp</a></span><br>
+                <span>Forgot Password? <a href="/reset-password/"
+                                          class="ml-2">Reset here</a></span>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
