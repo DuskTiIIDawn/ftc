@@ -17,8 +17,8 @@ from django.forms.models import inlineformset_factory
 from django.core.exceptions import PermissionDenied
 from datetime import datetime
 from PayTm import Checksum
-MERCHANT_KEY = 'ZYmjSIgt87IcfAtW'
-mid="pgPbso96413981699922"
+MERCHANT_KEY = '**********'
+mid="***********"
 import json
 import requests
 
