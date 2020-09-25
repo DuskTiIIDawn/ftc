@@ -20,7 +20,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '3_xl23prq0ebs86@5wl06((a!shf0)9=b%i3*$$1@n*h!&#^o^'
+SECRET_KEY = '**************************************'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -124,11 +124,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST_USER = "classesfuturetrack@gmail.com"
+EMAIL_HOST_USER = "xyz@gmail.com"
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = "Rahul@123"
+EMAIL_HOST_PASSWORD = "*******************************"
 AUTHENTICATION_BACKENDS = ['website.backends.ModelBackend']
 
 ADMIN_REORDER = (
